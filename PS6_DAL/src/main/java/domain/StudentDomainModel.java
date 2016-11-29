@@ -13,7 +13,7 @@ public class StudentDomainModel  {
 	private Date DOB;
 	
 	
-	protected StudentDomainModel() {
+	public StudentDomainModel() {
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class StudentDomainModel  {
 	public UUID getStudentID() {
 		return StudentID;
 	}
-	private void setStudentID(UUID studentID) {
+	public void setStudentID(UUID studentID) {
 		StudentID = studentID;
 	}
 

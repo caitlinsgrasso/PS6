@@ -51,6 +51,43 @@ public class Person_Test {
 		
 	}
 	
+	@After
+	public void tearDown() throws Exception {
+		PersonDomainModel per;
+		per = PersonDAL.getPerson(person1UUID);
+		PersonDAL.deletePerson(per.getPersonID());
+	}
 	
+	@Test
+	public void addPersonTest(){
+		PersonDomainModel per;
+		per = PersonDAL.getPerson(person1UUID);
+		PersonDAL.addPerson(per);
+		assertTrue(per.getPersonID()==person1UUID);
+	}
+	
+	@Test
+	public void deletePersonTest(){
+		PersonDomainModel per;
+		per = PersonDAL.getPerson(person1UUID);
+		PersonDAL.addPerson(per);
+		
+		PersonDAL.deletePerson(per.getPersonID());
+		assertNull(per);
+	}
+		
+	@Test 
+	public void updatePersonTest(){
+		final String firstName = "John";
+		PersonDomainModel per;
+		per = PersonDAL.getPerson(person1UUID);
+		PersonDAL.addPerson(per);
+		
+		per.setFirstName(firstName);
+		PersonDAL.updatePerson(per);
+		
+		assertTrue(per.getFirstName()==firstName);
+		
+	}
 
 }
